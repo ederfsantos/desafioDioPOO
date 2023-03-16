@@ -1,11 +1,10 @@
 package desafio.dominio;
 
 import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 
-public class Mentoria {
-
-   private String titulo;
-    private String descricao;
+public class Mentoria extends Conteudo {
+    DateTimeFormatter dtf = DateTimeFormatter.ofPattern("dd/MM/yyyy");//formatador de data para localDate
     private int cargaHoraria;
     private LocalDate data;
 
@@ -19,21 +18,7 @@ public class Mentoria {
         this.data = data;
     }
 
-    public String getTitulo() {
-        return titulo;
-    }
 
-    public void setTitulo(String titulo) {
-        this.titulo = titulo;
-    }
-
-    public String getDescricao() {
-        return descricao;
-    }
-
-    public void setDescricao(String descricao) {
-        this.descricao = descricao;
-    }
 
     public int getCargaHoraria() {
         return cargaHoraria;
@@ -45,11 +30,11 @@ public class Mentoria {
 
     @Override
     public String toString() {
-        return "Mentoria{" +
-                "titulo='" + titulo + '\'' +
-                ", descricao='" + descricao + '\'' +
-                ", cargaHoraria=" + cargaHoraria +
-                ", data=" + data +
-                '}';
+        return String.format("%s\nCarga Horaria = %d\nData = %s",super.toString(),this.getCargaHoraria(),data.format(dtf));
+    }
+
+    @Override
+    public double calcularXp() {
+        return XP_PADRAO + 20d;
     }
 }
